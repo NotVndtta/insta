@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :posts do
     resources :comments
+      member do
+        post 'like'
+        delete 'unlike'
+      end
 end
 end

@@ -7,8 +7,29 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @likes = @post.likes.count
+    @liked = current_user.likes.exists?(post_id: @post.id)
   end
-
+  def like
+    @post = Post.find(params[:id])
+    @like = current_user.likes.build(post_id: @post.id)
+    if @like.save
+      redirect_to post_path(@post), notice: "Post liked!"
+    else
+      redirect_to post_path(@post), alert: "Unable to like post."
+    end
+  end
+  
+  def unlike
+    @post = Post.find(params[:id])
+    @like = current_user.likes.find_by(post_id: @post.id)
+    if @like.destroy
+      redirect_to post_path(@post), notice: "Post unliked!"
+    else
+      redirect_to post_path(@post), alert: "Unable to unlike post."
+    end
+  end
   # GET /posts/new
   def new
    

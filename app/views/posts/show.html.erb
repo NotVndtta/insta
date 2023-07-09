@@ -17,3 +17,13 @@
      <%= form.text_area :body, placeholder: 'Add a comment' %>
      <%= form.submit 'Submit' %>
 <% end %>
+<h1><%= @post.title %></h1>
+<p><%= pluralize(@likes, "like") %></p>
+
+<% if user_signed_in? %>
+  <% if @liked %>
+    <%= button_to "Unlike", unlike_post_path(@post), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_post_path(@post), method: :post %>
+  <% end %>
+<% end %>
