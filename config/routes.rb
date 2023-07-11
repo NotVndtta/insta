@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/users/search', to: 'usegitrs#search', as: 'search_users'
   resources :posts
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
