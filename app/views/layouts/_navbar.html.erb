@@ -8,7 +8,7 @@
     <%= form.search_field :query, value: params[:query], placeholder: "User List", class:"search-field" %>
     <%= form.submit "User List", class:"btn btn-primary" %>
   <% end %>
-  
+   <%= link_to "My Posts", posts_path, class: "navbar-nav"%>
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
